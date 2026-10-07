@@ -11,20 +11,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4 # Đã nâng cấp lên v4
+        uses: actions/checkout@v4
 
       - name: Build Unity Project
-        uses: game-ci/unity-builder@v3 # GameCI builder vẫn giữ v3 hoặc v4 đều được
+        uses: game-ci/unity-builder@v4 # ĐÂY LÀ CHỖ CẦN SỬA: Bắt buộc dùng v4 cho Unity 6
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           targetPlatform: StandaloneWindows64
-          unityVersion: '6000.3.22f1'
+          unityVersion: '6000.3.22f1' 
 
       - name: Upload Build
-        uses: actions/upload-artifact@v4 # ĐÂY LÀ CHỖ QUAN TRỌNG NHẤT ĐÃ ĐƯỢC SỬA THÀNH v4
+        uses: actions/upload-artifact@v4
         with:
           name: Ban-Build-Windows
           path: build/StandaloneWindows64
