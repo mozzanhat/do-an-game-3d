@@ -21,6 +21,7 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           targetPlatform: StandaloneWindows64
+          unityVersion: '6000.3.22f1'
 
       - name: Upload Build
         uses: actions/upload-artifact@v4 # ĐÂY LÀ CHỖ QUAN TRỌNG NHẤT ĐÃ ĐƯỢC SỬA THÀNH v4
