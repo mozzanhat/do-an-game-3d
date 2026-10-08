@@ -1,19 +1,30 @@
-name: Xin file ban quyen tu may chu 🔑
+name: Build Game 3D 🎮
+
 on:
   push:
     branches:
       - main
+
 jobs:
-  request-alf:
+  buildWindows:
+    name: Build for Windows
     runs-on: ubuntu-latest
     steps:
-      - name: Yeu cau file ALF
-        id: getManualLicenseFile
-        uses: game-ci/unity-request-activation-file@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build Unity Project
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
+          targetPlatform: StandaloneWindows64
           unityVersion: '6000.3.22f1'
-      - name: Tai file ALF ve
+
+      - name: Upload Build
         uses: actions/upload-artifact@v4
         with:
-          name: File-ALF-Cua-May-Chu
-          path: ${{ steps.getManualLicenseFile.outputs.filePath }}
+          name: Ban-Build-Windows
+          path: build/StandaloneWindows64
