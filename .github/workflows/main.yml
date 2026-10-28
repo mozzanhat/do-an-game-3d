@@ -12,21 +12,15 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-
-      - name: Build Unity Project
-        uses: game-ci/unity-builder@v4
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          targetPlatform: StandaloneWindows64
-          unityVersion: '6000.3.22f1'
+          fetch-depth: 0
+
+      - name: Build Game using Local Unity
+        run: |
+          "C:\Program Files\Unity\Hub\Editor\6000.3.22f1\Editor\Unity.exe" -batchmode -nographics -quit -projectPath . -buildWindows64Player "build/StandaloneWindows64/Game.exe"
 
       - name: Upload Build
         uses: actions/upload-artifact@v4
         with:
           name: Ban-Build-Windows
           path: build/StandaloneWindows64
-
-          # Ep GitHub chay lai kich ban CI
