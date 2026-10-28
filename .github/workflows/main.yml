@@ -10,9 +10,9 @@ jobs:
     name: Build for Windows
     runs-on: self-hosted
     steps:
-     - name: Checkout Repository
-       uses: actions/checkout@v4
-       with:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
           fetch-depth: 0
           clean: false
 
@@ -28,4 +28,3 @@ jobs:
         with:
           name: Ban-Build-Windows
           path: build/StandaloneWindows64
-          #========================iiiiiiiiiiiiiiiiiiiiiiiiiirrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
