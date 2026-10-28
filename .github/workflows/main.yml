@@ -21,7 +21,7 @@ jobs:
 
       - name: Build Game using Local Unity
         run: |
-          & "C:\Program Files\Unity\Hub\Editor\6000.3.22f1\Editor\Unity.exe" -batchmode -nographics -quit -projectPath "${{ github.workspace }}" -executeMethod CIBuilder.BuildGame -logFile -
+          & "C:\Program Files\Unity\Hub\Editor\6000.3.22f1\Editor\Unity.exe" -batchmode -quit -projectPath "${{ github.workspace }}" -buildTarget StandaloneWindows64 -executeMethod CIBuilder.BuildGame -logFile -
       - name: Upload Build
         uses: actions/upload-artifact@v4
         with:
