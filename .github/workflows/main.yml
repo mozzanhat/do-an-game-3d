@@ -16,16 +16,14 @@ jobs:
           fetch-depth: 0
 
       - name: Tao thu muc Build
-        run: New-Item -Path "build\StandaloneWindows64" -ItemType Directory -Force
+        run: New-Item -Path "${{ github.workspace }}\build\StandaloneWindows64" -ItemType Directory -Force
 
       - name: Build Game using Local Unity
         run: |
-          & "C:\Program Files\Unity\Hub\Editor\6000.3.22f1\Editor\Unity.exe" -batchmode -nographics -quit -projectPath . -buildWindows64Player "build\StandaloneWindows64\Game.exe" -logFile -
+          & "C:\Program Files\Unity\Hub\Editor\6000.3.22f1\Editor\Unity.exe" -batchmode -nographics -quit -projectPath "${{ github.workspace }}" -buildWindows64Player "${{ github.workspace }}\build\StandaloneWindows64\Game.exe" -logFile -
 
       - name: Upload Build
         uses: actions/upload-artifact@v4
         with:
           name: Ban-Build-Windows
           path: build/StandaloneWindows64
-
-          #ggggggggggggggggggggggggg
