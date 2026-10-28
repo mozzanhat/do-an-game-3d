@@ -10,10 +10,11 @@ jobs:
     name: Build for Windows
     runs-on: self-hosted
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-        with:
+     - name: Checkout Repository
+       uses: actions/checkout@v4
+       with:
           fetch-depth: 0
+          clean: false
 
       - name: Tao thu muc Build
         run: New-Item -Path "${{ github.workspace }}\build\StandaloneWindows64" -ItemType Directory -Force
